@@ -9,6 +9,5 @@ import ru.rosbank.javaschool.servicerepo.annotation.repository.DemoRepository;
 @Getter
 @RequiredArgsConstructor
 public class DemoService {
-  // if constructor is only one no @Autowired required
   private final DemoRepository repository;
 }
