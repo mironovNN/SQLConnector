@@ -1,7 +1,6 @@
 package ru.rosbank.javaschool.datasource.kotlin;
 
 import lombok.Data;
-import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
 import ru.rosbank.javaschool.datasource.SqliteConnector;
 

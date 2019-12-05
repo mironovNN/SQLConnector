@@ -1,7 +1,6 @@
 package ru.rosbank.javaschool.datasource.programmatic;
 
 import lombok.Data;
-import org.springframework.stereotype.Controller;
 import ru.rosbank.javaschool.datasource.SqliteConnector;
 
 import javax.sql.DataSource;
