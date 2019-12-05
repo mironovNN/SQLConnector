@@ -31,5 +31,4 @@ public class JavaConfiguration {
     public static JavaSqliteConnector connector(@Value("${login}") String login, @Value("${password}") String password, DataSource sqLiteDataSource) {
         return new JavaSqliteConnector(login, password, sqLiteDataSource);
     }
-
 }

@@ -1,5 +1,6 @@
 package ru.rosbank.javaschool.datasource.annotation;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.sqlite.SQLiteDataSource;
 
@@ -12,12 +13,12 @@ import java.util.logging.Logger;
 
 @Component("datasource")
 public class AnnotationSqliteDataSource implements DataSource {
-    private final SQLiteDataSource sqLiteDataSource = new SQLiteDataSource();
+    private final SQLiteDataSource sqLiteDataSource;
 
-    public AnnotationSqliteDataSource() {
-        sqLiteDataSource.setUrl("${db_url}");
+    public AnnotationSqliteDataSource(@Value("${db_url}") String url) {
+        sqLiteDataSource = new SQLiteDataSource();
+        sqLiteDataSource.setUrl(url);
     }
-
 
     @Override
     public Connection getConnection() throws SQLException {
@@ -62,5 +63,9 @@ public class AnnotationSqliteDataSource implements DataSource {
     @Override
     public Logger getParentLogger() throws SQLFeatureNotSupportedException {
         return sqLiteDataSource.getParentLogger();
+    }
+
+    public String getUrl(){
+        return sqLiteDataSource.getUrl();
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 import org.sqlite.SQLiteDataSource;
 import ru.rosbank.javaschool.datasource.annotation.AnnotationSqliteConnector;
+import ru.rosbank.javaschool.datasource.annotation.AnnotationSqliteDataSource;
 import ru.rosbank.javaschool.datasource.groovy.GroovySqliteConnector;
 import ru.rosbank.javaschool.datasource.javaconfig.JavaConfiguration;
 import ru.rosbank.javaschool.datasource.javaconfig.JavaSqliteConnector;
@@ -27,8 +28,10 @@ class SqliteConnectorTest {
     public void annotation(){
         val context = new AnnotationConfigApplicationContext("ru.rosbank.javaschool.datasource.annotation");
         AnnotationSqliteConnector result = (AnnotationSqliteConnector)context.getBean("connector");
+        AnnotationSqliteDataSource sqliteDataSource = (AnnotationSqliteDataSource)context.getBean("datasource");
         assertEquals("login", result.getLogin());
         assertEquals("password", result.getPassword());
+        assertEquals("java:/comp/env/jdbc/db", sqliteDataSource.getUrl());
     }
 
     @Test
@@ -40,6 +43,7 @@ class SqliteConnectorTest {
         GroovySqliteConnector result = (GroovySqliteConnector)context.getBean("connector");
         assertEquals("login", result.getLogin());
         assertEquals("password", result.getPassword());
+
     }
 
     @Test
